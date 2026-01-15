@@ -66,11 +66,11 @@ export default function CareerPage() {
               No Open Positions Available
             </h2>
             <p className="text-gray-600 text-sm sm:text-base mb-8 max-w-2xl mx-auto">
-              We currently don't have any open positions available. However, we're always looking for talented individuals to join our team.
+              We currently don&apos;t have any open positions available. However, we&apos;re always looking for talented individuals to join our team.
             </p>
             <div className="bg-gray-50 rounded-lg p-6 sm:p-8 border border-gray-200">
               <p className="text-gray-700 text-sm sm:text-base mb-4">
-                If you're interested in working with us, please feel free to reach out to us via email:
+                If you&apos;re interested in working with us, please feel free to reach out to us via email:
               </p>
               <motion.a
                 href="mailto:info@energize-sa.com"
