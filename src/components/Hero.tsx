@@ -139,98 +139,25 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Right Images - Vertical Stack with Circular Cut */}
+          {/* Right Image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative h-[300px] lg:h-[400px] flex items-center justify-center"
+            className="relative h-[280px] lg:h-[350px] flex items-center justify-center"
           >
-            {/* Container for vertical stacked images */}
-            <div className="relative w-full h-full flex flex-col items-center justify-center">
-              {/* SVG Definitions for circular clips */}
-              <svg className="absolute opacity-0 pointer-events-none" width="0" height="0">
-                <defs>
-                  <clipPath id="clipTopCircle" clipPathUnits="objectBoundingBox">
-                    <rect x="0" y="0" width="1" height="0.85" />
-                    <circle cx="0.15" cy="0.85" r="0.15" />
-                  </clipPath>
-                  <clipPath id="clipBottomCircle" clipPathUnits="objectBoundingBox">
-                    <circle cx="0.15" cy="0.15" r="0.15" />
-                    <rect x="0" y="0.15" width="1" height="0.85" />
-                  </clipPath>
-                </defs>
-              </svg>
-
-              {/* Image 1 - Top (cut from bottom with circular cut) */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="relative w-full h-[33.33%] rounded-t-lg overflow-visible"
-                style={{ marginBottom: '-30px', zIndex: 1 }}
-              >
-                <div className="relative w-full h-full rounded-t-lg overflow-hidden shadow-lg">
-                  <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
-                    <defs>
-                      <mask id="maskTop">
-                        <rect x="0" y="0" width="100%" height="100%" fill="white" />
-                        <circle cx="30" cy="100%" r="30" fill="black" />
-                      </mask>
-                    </defs>
-                    <rect x="0" y="0" width="100%" height="100%" fill="white" mask="url(#maskTop)" />
-                  </svg>
-                  <img
-                    src="https://i.pinimg.com/1200x/eb/c0/22/ebc0229e85bbb02ebf6303531ae7d68d.jpg"
-                    alt="Business growth"
-                    className="w-full h-full object-cover"
-                    style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% calc(100% - 30px), 0% calc(100% - 30px), 0% 100%, 30px 100%, 30px calc(100% - 15px), 0% calc(100% - 15px))' }}
-                  />
-                </div>
-                {/* Circular cut indicator */}
-                <div className="absolute bottom-0 left-0 w-[30px] h-[30px] -translate-x-1/2 translate-y-1/2 rounded-full bg-[#0A0A0A] border-2 border-primary z-10"></div>
-              </motion.div>
-
-              {/* Image 2 - Middle (no cut, full) */}
-              <motion.div
-                initial={{ opacity: 0, y: 0 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="relative w-full h-[33.33%] overflow-visible z-20"
-                style={{ marginTop: '-30px', marginBottom: '-30px' }}
-              >
-                <div className="relative w-full h-full overflow-hidden shadow-lg">
-                  <img
-                    src="https://images.unsplash.com/photo-1682687221080-5cb261c645cb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Team collaboration"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Circular cut indicators on both sides */}
-                <div className="absolute top-0 left-0 w-[30px] h-[30px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0A0A0A] border-2 border-primary z-10"></div>
-                <div className="absolute bottom-0 left-0 w-[30px] h-[30px] -translate-x-1/2 translate-y-1/2 rounded-full bg-[#0A0A0A] border-2 border-primary z-10"></div>
-              </motion.div>
-
-              {/* Image 3 - Bottom (cut from top with circular cut) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="relative w-full h-[33.33%] rounded-b-lg overflow-visible"
-                style={{ marginTop: '-30px', zIndex: 1 }}
-              >
-                <div className="relative w-full h-full rounded-b-lg overflow-hidden shadow-lg">
-                  <img
-                    src="https://i.pinimg.com/1200x/9e/1c/8e/9e1c8ef64ef1cc7668962ccea2899116.jpg"
-                    alt="Marketing success"
-                    className="w-full h-full object-cover"
-                    style={{ clipPath: 'polygon(0% 30px, 30px 30px, 30px 15px, 0% 15px, 0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
-                  />
-                </div>
-                {/* Circular cut indicator */}
-                <div className="absolute top-0 left-0 w-[30px] h-[30px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0A0A0A] border-2 border-primary z-10"></div>
-              </motion.div>
+            <div className="relative w-[85%] h-full rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="https://i.pinimg.com/736x/05/bf/b0/05bfb05db1edba2292d59e047087516e.jpg"
+                alt="Marketing success"
+                className="w-full h-full object-cover"
+              />
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
             </div>
+            {/* Decorative elements */}
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+            <div className="absolute -top-4 -left-4 w-20 h-20 bg-primary/10 rounded-full blur-xl" />
           </motion.div>
         </div>
 
@@ -239,7 +166,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex justify-center"
+          className="absolute bottom-19 left-1/2 transform -translate-x-1/2 flex justify-center"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}

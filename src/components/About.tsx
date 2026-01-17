@@ -77,6 +77,7 @@ export default function About() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-all shadow-lg hover:shadow-xl"
+              onClick={() => window.location.href = '/about'}
             >
               Learn More
             </motion.button>

@@ -27,8 +27,8 @@ export default function Contact() {
     {
       icon: FiMail,
       label: "Email",
-      value: "info@energize-sa.com",
-      href: "mailto:info@energize-sa.com",
+      value: "marketing@energize-sa.com",
+      href: "mailto:marketing@energize-sa.com",
     },
     {
       icon: FiPhone,

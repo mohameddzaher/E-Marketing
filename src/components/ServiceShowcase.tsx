@@ -1,21 +1,21 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { FiArrowRight, FiSmartphone, FiImage, FiFilm, FiCalendar, FiTrendingUp, FiZap } from "react-icons/fi";
+import { FiArrowRight, FiMonitor, FiTrendingUp, FiFilm, FiAward, FiSearch, FiLayers } from "react-icons/fi";
 import Link from "next/link";
 
 const serviceDetails = [
   {
     id: "digital-marketing",
-    icon: FiSmartphone,
+    icon: FiMonitor,
     title: "Digital Marketing",
     description: "Comprehensive digital strategies including SEO, SEM, social media, and content marketing",
     features: ["Social Media Management", "Content Strategy", "Analytics & Reporting"],
   },
   {
-    id: "brand-design",
-    icon: FiImage,
-    title: "Brand Design",
+    id: "branding",
+    icon: FiTrendingUp,
+    title: "Branding",
     description: "Creative brand identity design including logos, guidelines, and visual systems",
     features: ["Logo Design", "Brand Guidelines", "Visual Identity"],
   },
@@ -27,25 +27,25 @@ const serviceDetails = [
     features: ["Commercial Ads", "Corporate Videos", "Social Media Content"],
   },
   {
-    id: "event-management",
-    icon: FiCalendar,
-    title: "Event Management",
-    description: "Full-scale event planning and execution for launches, conferences, and exhibitions",
-    features: ["Event Planning", "Venue Management", "Media Coordination"],
+    id: "brand-activation",
+    icon: FiAward,
+    title: "Brand Activation",
+    description: "Creating interactive and immersive experiences that connect brands with audiences",
+    features: ["Interactive Experiences", "Event Activations", "Experiential Marketing"],
   },
   {
-    id: "market-research",
-    icon: FiTrendingUp,
-    title: "Market Research",
+    id: "research-surveys",
+    icon: FiSearch,
+    title: "Research & Surveys",
     description: "In-depth market analysis and consumer insights to drive strategic decisions",
-    features: ["Competitor Analysis", "Consumer Insights", "Market Trends"],
+    features: ["Market Analysis", "Consumer Insights", "Data-Driven Decisions"],
   },
   {
-    id: "campaign-strategy",
-    icon: FiZap,
-    title: "Campaign Strategy",
+    id: "creative-campaigns",
+    icon: FiLayers,
+    title: "Creative Campaigns",
     description: "Strategic campaign planning and execution across all marketing channels",
-    features: ["Campaign Planning", "Execution", "Performance Tracking"],
+    features: ["Campaign Planning", "Storytelling", "Performance Tracking"],
   },
 ];
 
