@@ -4,6 +4,106 @@ import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 
+// Marketing Word Display Component with Pins
+type Pin = {
+  label: string;
+  x: number;
+  lineDir: "up" | "down";
+  lineLen: number;
+};
+
+const topPins: Pin[] = [
+  { label: "ADVERTISING", x: 10, lineDir: "down", lineLen: 35 },  // short
+  { label: "ENGAGEMENT", x: 35, lineDir: "down", lineLen: 60 },   // long
+  { label: "INNOVATION", x: 60, lineDir: "down", lineLen: 35 },   // short
+  { label: "NETWORKING", x: 85, lineDir: "down", lineLen: 60 },   // long
+];
+
+const bottomPins: Pin[] = [
+  { label: "RESEARCH", x: 10, lineDir: "up", lineLen: 60 },    // long
+  { label: "STRATEGY", x: 35, lineDir: "up", lineLen: 35 },    // short
+  { label: "GROWTH", x: 60, lineDir: "up", lineLen: 60 },      // long
+  { label: "TARGETING", x: 85, lineDir: "up", lineLen: 35 },   // short
+];
+
+function PinItem({ label, x, lineDir, lineLen, index }: Pin & { index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: lineDir === "down" ? -20 : 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+      className="absolute flex flex-col items-center"
+      style={{ left: `${x}%`, transform: 'translateX(-50%)' }}
+    >
+      {lineDir === "down" ? (
+        <>
+          {/* Label above */}
+          <span className="whitespace-nowrap text-[7px] sm:text-[9px] md:text-[10px] tracking-[0.15em] text-zinc-400/90 mb-1">
+            {label}
+          </span>
+          {/* Dot */}
+          <span className="block h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_rgba(220,38,38,0.4)]" />
+          {/* Line down */}
+          <span
+            className="w-px bg-gradient-to-b from-primary/60 to-transparent"
+            style={{ height: `${lineLen}px` }}
+          />
+        </>
+      ) : (
+        <>
+          {/* Line up */}
+          <span
+            className="w-px bg-gradient-to-t from-primary/60 to-transparent"
+            style={{ height: `${lineLen}px` }}
+          />
+          {/* Dot */}
+          <span className="block h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_rgba(220,38,38,0.4)]" />
+          {/* Label below */}
+          <span className="whitespace-nowrap text-[7px] sm:text-[9px] md:text-[10px] tracking-[0.15em] text-zinc-400/90 mt-1">
+            {label}
+          </span>
+        </>
+      )}
+    </motion.div>
+  );
+}
+
+function MarketingWordDisplay() {
+  return (
+    <div className="relative w-full h-full flex flex-col">
+      {/* Top pins row */}
+      <div className="relative h-[25%] w-full">
+        {topPins.map((p, idx) => (
+          <PinItem key={idx} {...p} index={idx} />
+        ))}
+      </div>
+
+      {/* Center - MARKETING word */}
+      <div className="relative h-[50%] w-full flex items-center justify-center">
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="font-extrabold tracking-[0.08em] text-zinc-200/95 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[64px] leading-none drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+        >
+          MARKETING
+        </motion.h2>
+        {/* Subtle glow behind text */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[80%] h-[60%] bg-primary/5 rounded-full blur-3xl" />
+        </div>
+      </div>
+
+      {/* Bottom pins row */}
+      <div className="relative h-[25%] w-full flex items-end">
+        {bottomPins.map((p, idx) => (
+          <PinItem key={idx} {...p} index={idx + 4} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -139,25 +239,14 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Right Image */}
+          {/* Right Side - Marketing Word with Pins */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative h-[280px] lg:h-[350px] flex items-center justify-center"
+            className="relative h-[300px] sm:h-[350px] lg:h-[400px]"
           >
-            <div className="relative w-[85%] h-full rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="https://i.pinimg.com/736x/05/bf/b0/05bfb05db1edba2292d59e047087516e.jpg"
-                alt="Marketing success"
-                className="w-full h-full object-cover"
-              />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-            </div>
-            {/* Decorative elements */}
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
-            <div className="absolute -top-4 -left-4 w-20 h-20 bg-primary/10 rounded-full blur-xl" />
+            <MarketingWordDisplay />
           </motion.div>
         </div>
 
