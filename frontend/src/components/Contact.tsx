@@ -40,7 +40,7 @@ export default function Contact() {
       icon: FiMapPin,
       label: "Location",
       value: "Raihanat Al Jazirah, Al Faisaliyyah, Jeddah 23442",
-      href: "https://maps.app.goo.gl/FVqNdPH9hCvacvtm6",
+      href: "https://maps.app.goo.gl/dCjJ52mncRA9pWq7A",
     },
   ];
 

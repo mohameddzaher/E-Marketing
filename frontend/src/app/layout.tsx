@@ -120,6 +120,7 @@ export default function RootLayout({
                 postalCode: "23442",
                 addressCountry: "SA",
               },
+              hasMap: "https://maps.app.goo.gl/dCjJ52mncRA9pWq7A",
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+966-12-682-5858",
@@ -135,6 +136,47 @@ export default function RootLayout({
                 "https://www.youtube.com/@EnergizeBusKSA",
                 "https://www.tiktok.com/@energizebusksa",
               ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://energize-sa.com",
+              name: "Energize Your Business",
+              alternateName: "Energize Marketing",
+              image: "https://energize-sa.com/images/logo.png",
+              url: "https://energize-sa.com",
+              telephone: "+966-12-682-5858",
+              priceRange: "$$",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Raihanat Al Jazirah, Al Faisaliyyah",
+                addressLocality: "Jeddah",
+                postalCode: "23442",
+                addressCountry: "SA",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 21.4858,
+                longitude: 39.1925,
+              },
+              hasMap: "https://maps.app.goo.gl/dCjJ52mncRA9pWq7A",
+              openingHoursSpecification: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Sunday",
+                ],
+                opens: "09:00",
+                closes: "18:00",
+              },
             }),
           }}
         />
@@ -162,6 +204,7 @@ export default function RootLayout({
                 latitude: 21.4858,
                 longitude: 39.1925,
               },
+              hasMap: "https://maps.app.goo.gl/dCjJ52mncRA9pWq7A",
               openingHoursSpecification: {
                 "@type": "OpeningHoursSpecification",
                 dayOfWeek: [

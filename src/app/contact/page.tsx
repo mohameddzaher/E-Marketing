@@ -223,19 +223,19 @@ export default function ContactPage() {
           >
             <div className="h-64 sm:h-80 rounded-lg overflow-hidden bg-gray-200 border border-gray-300">
               <iframe
-                src="https://www.google.com/maps?q=Raihanat+Al+Jazirah,+Al+Faisaliyyah,+Jeddah+23442&output=embed"
+                src="https://www.google.com/maps?q=Energize+Your+Business,+Raihanat+Al+Jazirah,+Al+Faisaliyyah,+Jeddah+23442&output=embed"
                 width="100%"
                 height="100%"
                 className="border-0"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Energize Marketing Office Location"
+                title="Energize Your Business - Office Location"
               ></iframe>
             </div>
             <div className="text-center">
               <a
-                href="https://maps.app.goo.gl/FVqNdPH9hCvacvtm6"
+                href="https://maps.app.goo.gl/dCjJ52mncRA9pWq7A"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 text-primary hover:text-primary-dark text-sm font-semibold transition-colors"
