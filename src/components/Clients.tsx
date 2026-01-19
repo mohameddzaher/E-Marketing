@@ -1,8 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const clients = [
   { name: 'Abbott', logo: '/images/clients/Abbott-.png' },
@@ -47,6 +47,16 @@ export default function Clients() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [isPaused, setIsPaused] = useState(false);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (!isPaused) {
+      controls.start({
+        x: ['0%', '-100%'],
+        transition: { repeat: Infinity, duration: 60, ease: 'linear' }
+      });
+    }
+  }, [isPaused, controls]);
 
   return (
     <section className="relative py-12 sm:py-16 overflow-hidden">
@@ -82,8 +92,7 @@ export default function Clients() {
           <div className="flex space-x-6 sm:space-x-8 overflow-hidden w-full">
             {/* Animated infinite scroll */}
             <motion.div
-              animate={isPaused ? { x: '0%' } : { x: ['0%', '-100%'] }}
-              transition={isPaused ? {} : { repeat: Infinity, duration: 60, ease: 'linear' }}
+              animate={controls}
               className="flex space-x-6 sm:space-x-8 min-w-max"
             >
               {[...clients, ...clients].map((client, index) => (
