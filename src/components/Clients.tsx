@@ -27,23 +27,22 @@ export default function Clients() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
-  const pausedProgressRef = useRef<number>(0);
+  const currentXRef = useRef<number>(0);
+  const pausedXRef = useRef<number>(0);
 
   useEffect(() => {
     if (!sliderRef.current) return;
 
     const duration = 60000; // 60 seconds in milliseconds
     const distance = -50; // Move -50% (half of the duplicated content)
+    const speed = distance / duration; // pixels per millisecond
 
     const animate = (timestamp: number) => {
       if (!sliderRef.current) return;
 
-      // If paused, save current progress and stop
+      // If paused, save current position and stop
       if (isPaused) {
-        if (startTimeRef.current !== null) {
-          const elapsed = timestamp - startTimeRef.current;
-          pausedProgressRef.current = Math.min(elapsed / duration, 1);
-        }
+        pausedXRef.current = currentXRef.current;
         if (animationRef.current !== null) {
           cancelAnimationFrame(animationRef.current);
           animationRef.current = null;
@@ -51,23 +50,28 @@ export default function Clients() {
         return;
       }
 
-      // Resume from saved progress or start new
+      // Initialize start time on first run or after pause
       if (startTimeRef.current === null) {
-        startTimeRef.current = timestamp - (pausedProgressRef.current * duration);
+        startTimeRef.current = timestamp;
+        currentXRef.current = pausedXRef.current;
       }
 
       const elapsed = timestamp - startTimeRef.current;
-      const progress = Math.min(elapsed / duration, 1);
+      const newX = pausedXRef.current + (elapsed * speed);
       
-      if (sliderRef.current) {
-        const currentX = progress * distance;
-        sliderRef.current.style.transform = `translateX(${currentX}%)`;
-        
-        if (progress >= 1) {
-          // Reset to 0% instantly and restart
+      // Check if we've reached the end
+      if (newX <= distance) {
+        // Reset to 0% instantly and restart
+        currentXRef.current = 0;
+        pausedXRef.current = 0;
+        startTimeRef.current = timestamp;
+        if (sliderRef.current) {
           sliderRef.current.style.transform = 'translateX(0%)';
-          startTimeRef.current = null;
-          pausedProgressRef.current = 0;
+        }
+      } else {
+        currentXRef.current = newX;
+        if (sliderRef.current) {
+          sliderRef.current.style.transform = `translateX(${newX}%)`;
         }
       }
       
