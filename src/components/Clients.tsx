@@ -29,13 +29,13 @@ export default function Clients() {
   const startTimeRef = useRef<number | null>(null);
   const currentXRef = useRef<number>(0);
   const pausedXRef = useRef<number>(0);
+  const lastTimestampRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!sliderRef.current) return;
 
     const duration = 60000; // 60 seconds in milliseconds
     const distance = -50; // Move -50% (half of the duplicated content)
-    const speed = distance / duration; // pixels per millisecond
 
     const animate = (timestamp: number) => {
       if (!sliderRef.current) return;
@@ -43,6 +43,7 @@ export default function Clients() {
       // If paused, save current position and stop
       if (isPaused) {
         pausedXRef.current = currentXRef.current;
+        lastTimestampRef.current = null;
         if (animationRef.current !== null) {
           cancelAnimationFrame(animationRef.current);
           animationRef.current = null;
@@ -50,28 +51,31 @@ export default function Clients() {
         return;
       }
 
-      // Initialize start time on first run or after pause
+      // Initialize on first run
       if (startTimeRef.current === null) {
         startTimeRef.current = timestamp;
         currentXRef.current = pausedXRef.current;
       }
 
+      // Calculate elapsed time from start
       const elapsed = timestamp - startTimeRef.current;
-      const newX = pausedXRef.current + (elapsed * speed);
+      const progress = Math.min(elapsed / duration, 1);
+      const newX = pausedXRef.current + (progress * (distance - pausedXRef.current));
+      
+      // Update position
+      currentXRef.current = newX;
+      if (sliderRef.current) {
+        sliderRef.current.style.transform = `translateX(${newX}%)`;
+      }
       
       // Check if we've reached the end
-      if (newX <= distance) {
+      if (progress >= 1) {
         // Reset to 0% instantly and restart
         currentXRef.current = 0;
         pausedXRef.current = 0;
         startTimeRef.current = timestamp;
         if (sliderRef.current) {
           sliderRef.current.style.transform = 'translateX(0%)';
-        }
-      } else {
-        currentXRef.current = newX;
-        if (sliderRef.current) {
-          sliderRef.current.style.transform = `translateX(${newX}%)`;
         }
       }
       
@@ -83,6 +87,10 @@ export default function Clients() {
 
     // Start animation if not paused
     if (!isPaused) {
+      // Reset start time when resuming
+      if (startTimeRef.current !== null) {
+        startTimeRef.current = performance.now() - ((pausedXRef.current / distance) * duration);
+      }
       animationRef.current = requestAnimationFrame(animate);
     }
     
