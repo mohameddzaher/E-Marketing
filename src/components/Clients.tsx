@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from 'react';
 
 // Ordered list of clients as specified
 const clients = [
+  { name: 'Samsung', logo: '/images/clients/Samsung-.png' },
   { name: 'Saudia Airlines', logo: '/images/clients/Saudia Group-.png' },
   { name: 'Cheil', logo: '/images/clients/Cheil-.webp' },
   { name: 'Philips', logo: '/images/clients/Philips-.png' },
