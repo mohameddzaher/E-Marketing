@@ -24,83 +24,6 @@ export default function Clients() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [isPaused, setIsPaused] = useState(false);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number | null>(null);
-  const startTimeRef = useRef<number | null>(null);
-  const currentXRef = useRef<number>(0);
-  const pausedXRef = useRef<number>(0);
-  const lastTimestampRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (!sliderRef.current) return;
-
-    const duration = 60000; // 60 seconds in milliseconds
-    const distance = -50; // Move -50% (half of the duplicated content)
-
-    const animate = (timestamp: number) => {
-      if (!sliderRef.current) return;
-
-      // If paused, save current position and stop
-      if (isPaused) {
-        pausedXRef.current = currentXRef.current;
-        lastTimestampRef.current = null;
-        if (animationRef.current !== null) {
-          cancelAnimationFrame(animationRef.current);
-          animationRef.current = null;
-        }
-        return;
-      }
-
-      // Initialize on first run
-      if (startTimeRef.current === null) {
-        startTimeRef.current = timestamp;
-        currentXRef.current = pausedXRef.current;
-      }
-
-      // Calculate elapsed time from start
-      const elapsed = timestamp - startTimeRef.current;
-      const progress = Math.min(elapsed / duration, 1);
-      const newX = pausedXRef.current + (progress * (distance - pausedXRef.current));
-      
-      // Update position
-      currentXRef.current = newX;
-      if (sliderRef.current) {
-        sliderRef.current.style.transform = `translateX(${newX}%)`;
-      }
-      
-      // Check if we've reached the end
-      if (progress >= 1) {
-        // Reset to 0% instantly and restart
-        currentXRef.current = 0;
-        pausedXRef.current = 0;
-        startTimeRef.current = timestamp;
-        if (sliderRef.current) {
-          sliderRef.current.style.transform = 'translateX(0%)';
-        }
-      }
-      
-      // Continue animation only if not paused
-      if (!isPaused) {
-        animationRef.current = requestAnimationFrame(animate);
-      }
-    };
-
-    // Start animation if not paused
-    if (!isPaused) {
-      // Reset start time when resuming
-      if (startTimeRef.current !== null) {
-        startTimeRef.current = performance.now() - ((pausedXRef.current / distance) * duration);
-      }
-      animationRef.current = requestAnimationFrame(animate);
-    }
-    
-    return () => {
-      if (animationRef.current !== null) {
-        cancelAnimationFrame(animationRef.current);
-        animationRef.current = null;
-      }
-    };
-  }, [isPaused]);
 
   return (
     <section className="relative py-12 sm:py-16 overflow-hidden">
@@ -136,8 +59,11 @@ export default function Clients() {
           <div className="flex space-x-6 sm:space-x-8 overflow-hidden w-full">
             {/* Animated infinite scroll */}
             <div
-              ref={sliderRef}
               className="flex space-x-6 sm:space-x-8 min-w-max"
+              style={{
+                animation: isPaused ? 'none' : 'slide 60s linear infinite',
+                animationPlayState: isPaused ? 'paused' : 'running',
+              }}
             >
               {[...clients, ...clients].map((client, index) => (
                 <motion.div
