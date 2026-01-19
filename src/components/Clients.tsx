@@ -4,43 +4,20 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 
+// Ordered list of clients as specified
 const clients = [
-  { name: 'Abbott', logo: '/images/clients/Abbott-.png' },
-  { name: 'Ajmal', logo: '/images/clients/Ajmal-.png' },
-  { name: 'AlBalad Dev Company', logo: '/images/clients/AlBalad Dev Company-.png' },
-  { name: 'AlSalamah Hosp', logo: '/images/clients/AlSalamah Hosp-.png' },
-  { name: 'Alwatan', logo: '/images/clients/Alwatan.png' },
-  { name: 'Aviation Academy', logo: '/images/clients/Avaition Academy-.png' },
+  { name: 'Saudia Airlines', logo: '/images/clients/Saudia Group-.png' },
   { name: 'Cheil', logo: '/images/clients/Cheil-.webp' },
-  { name: 'Communion', logo: '/images/clients/Communion-.png' },
-  { name: 'Core', logo: '/images/clients/Core-.png' },
-  { name: 'Damac', logo: '/images/clients/Damac-.png' },
-  { name: 'Fakeeh Medical', logo: '/images/clients/Fakeeh Medical-.webp' },
-  { name: 'flyadeal', logo: '/images/clients/flyadeal-.png' },
-  { name: 'GACA', logo: '/images/clients/GACA-.png' },
-  { name: 'Galderma', logo: '/images/clients/Galderma-.png' },
-  { name: 'Gillette', logo: '/images/clients/Gillette-.png' },
-  { name: 'jedco', logo: '/images/clients/jedco-.png' },
-  { name: 'MG', logo: '/images/clients/MG-.png' },
-  { name: 'Mobil1', logo: '/images/clients/Mobil1-.png' },
-  { name: 'Nahdi', logo: '/images/clients/Nahdi.png' },
-  { name: 'nice', logo: '/images/clients/nice-.png' },
-  { name: 'Ogilvy', logo: '/images/clients/Ogilvy-.png' },
-  { name: 'panda', logo: '/images/clients/panda-.png' },
-  { name: 'Petro Rabigh', logo: '/images/clients/Petro Rabigh-.png' },
   { name: 'Philips', logo: '/images/clients/Philips-.png' },
-  { name: 'PIF', logo: '/images/clients/PIF-.png' },
-  { name: 'Rixos', logo: '/images/clients/Rixos-.png' },
-  { name: 'sael', logo: '/images/clients/sael-.png' },
-  { name: 'Samsung', logo: '/images/clients/Samsung-.png' },
-  { name: 'SARED', logo: '/images/clients/SARED-.png' },
-  { name: 'SASO', logo: '/images/clients/SASO-.png' },
-  { name: 'Saudia Group', logo: '/images/clients/Saudia Group-.png' },
-  { name: 'Saudia Technic', logo: '/images/clients/Saudia Technic-.png' },
-  { name: 'savola', logo: '/images/clients/savola-.png' },
-  { name: 'SGS', logo: '/images/clients/SGS-.png' },
-  { name: 'SNB', logo: '/images/clients/SNB-.png' },
-  { name: 'StarzPlay', logo: '/images/clients/StarzPlay-.png' },
+  { name: 'Abbott', logo: '/images/clients/Abbott-.png' },
+  { name: 'GACA', logo: '/images/clients/GACA-.png' },
+  { name: 'Jedco', logo: '/images/clients/jedco-.png' },
+  { name: 'Savola', logo: '/images/clients/savola-.png' },
+  { name: 'Mobil1', logo: '/images/clients/Mobil1-.png' },
+  { name: 'Damac', logo: '/images/clients/Damac-.png' },
+  { name: 'Nahdi', logo: '/images/clients/Nahdi.png' },
+  { name: 'Al Watan', logo: '/images/clients/Alwatan.png' },
+  { name: 'Nice', logo: '/images/clients/nice-.png' },
 ];
 
 export default function Clients() {
@@ -48,43 +25,69 @@ export default function Clients() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [isPaused, setIsPaused] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
+  const pausedProgressRef = useRef<number>(0);
 
   useEffect(() => {
-    if (!isPaused && sliderRef.current) {
-      let animationId: number;
-      let startTime: number | null = null;
-      const duration = 60000; // 60 seconds in milliseconds
-      const distance = -50; // Move -50% (half of the duplicated content)
+    if (!sliderRef.current) return;
 
-      const animate = (timestamp: number) => {
-        if (!startTime) startTime = timestamp;
-        const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        if (sliderRef.current) {
-          const currentX = progress * distance;
-          sliderRef.current.style.transform = `translateX(${currentX}%)`;
-          
-          if (progress >= 1) {
-            // Reset to 0% instantly and restart
-            if (sliderRef.current) {
-              sliderRef.current.style.transform = 'translateX(0%)';
-            }
-            startTime = null;
-          }
-        }
-        
-        if (!isPaused) {
-          animationId = requestAnimationFrame(animate);
-        }
-      };
+    const duration = 60000; // 60 seconds in milliseconds
+    const distance = -50; // Move -50% (half of the duplicated content)
 
-      animationId = requestAnimationFrame(animate);
+    const animate = (timestamp: number) => {
+      if (!sliderRef.current) return;
+
+      // If paused, save current progress and stop
+      if (isPaused) {
+        if (startTimeRef.current !== null) {
+          const elapsed = timestamp - startTimeRef.current;
+          pausedProgressRef.current = Math.min(elapsed / duration, 1);
+        }
+        if (animationRef.current !== null) {
+          cancelAnimationFrame(animationRef.current);
+          animationRef.current = null;
+        }
+        return;
+      }
+
+      // Resume from saved progress or start new
+      if (startTimeRef.current === null) {
+        startTimeRef.current = timestamp - (pausedProgressRef.current * duration);
+      }
+
+      const elapsed = timestamp - startTimeRef.current;
+      const progress = Math.min(elapsed / duration, 1);
       
-      return () => {
-        cancelAnimationFrame(animationId);
-      };
+      if (sliderRef.current) {
+        const currentX = progress * distance;
+        sliderRef.current.style.transform = `translateX(${currentX}%)`;
+        
+        if (progress >= 1) {
+          // Reset to 0% instantly and restart
+          sliderRef.current.style.transform = 'translateX(0%)';
+          startTimeRef.current = null;
+          pausedProgressRef.current = 0;
+        }
+      }
+      
+      // Continue animation only if not paused
+      if (!isPaused) {
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    // Start animation if not paused
+    if (!isPaused) {
+      animationRef.current = requestAnimationFrame(animate);
     }
+    
+    return () => {
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
+    };
   }, [isPaused]);
 
   return (
