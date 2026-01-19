@@ -44,11 +44,11 @@ export default function Testimonials() {
               WHY CHOOSE US
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold font-display text-gray-900 mb-2">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold font-display text-gray-900 mb-2">
             Marketing Excellence
             <span className="text-gradient"> That Works</span>
           </h2>
-          <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
+          <p className="text-gray-600 text-xs sm:text-sm max-w-2xl mx-auto">
             We combine creativity, strategy, and technology to deliver marketing solutions that drive real business growth.
           </p>
         </motion.div>
@@ -91,10 +91,10 @@ export default function Testimonials() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-all shadow-lg hover:shadow-xl"
+              className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-primary hover:bg-primary-dark text-white font-semibold text-xs sm:text-sm transition-all shadow-lg hover:shadow-xl"
             >
               <span>Explore Our Services</span>
-              <FiArrowRight className="w-4 h-4" />
+              <FiArrowRight className="w-3 h-3" />
             </motion.button>
           </Link>
         </motion.div>
