@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 
 // Ordered list of clients as specified
 const clients = [
@@ -24,7 +24,6 @@ const clients = [
 export default function Clients() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const [isPaused, setIsPaused] = useState(false);
 
   return (
     <section className="relative py-12 sm:py-16 overflow-hidden">
@@ -54,16 +53,13 @@ export default function Clients() {
         {/* Clients Slider */}
         <div 
           className="relative flex items-center justify-center overflow-hidden"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
         >
           <div className="flex space-x-6 sm:space-x-8 overflow-hidden w-full">
             {/* Animated infinite scroll */}
             <div
               className="flex space-x-6 sm:space-x-8 min-w-max"
               style={{
-                animation: isPaused ? 'none' : 'slide 60s linear infinite',
-                animationPlayState: isPaused ? 'paused' : 'running',
+                animation: 'slide 60s linear infinite',
               }}
             >
               {[...clients, ...clients].map((client, index) => (
