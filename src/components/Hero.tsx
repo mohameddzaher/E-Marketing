@@ -85,7 +85,7 @@ function MarketingWordDisplay() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="font-extrabold tracking-[0.08em] text-zinc-200/95 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[64px] leading-none drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)] text-center w-full"
-          style={{ textAlign: 'center' }}
+          style={{ textAlign: 'center', transform: 'translateX(2%)' }}
         >
           MARKETING
         </motion.h2>
