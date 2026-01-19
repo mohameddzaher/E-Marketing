@@ -28,8 +28,8 @@ const serviceImages: { [key: string]: string[] } = {
   ],
   'distribution': [
     'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=400&fit=crop',
+    'https://plus.unsplash.com/premium_photo-1661302828763-4ec9b91d9ce3?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1565891741441-64926e441838?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   ],
   'brand-activation': [
     'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',

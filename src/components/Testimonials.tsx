@@ -3,22 +3,22 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FiArrowRight, FiTrendingUp, FiTarget, FiZap } from 'react-icons/fi';
+import { FiArrowRight, FiBarChart2, FiUsers, FiLayers } from 'react-icons/fi';
 import Link from 'next/link';
 
 const marketingHighlights = [
   {
-    icon: FiTrendingUp,
+    icon: FiBarChart2,
     title: 'Data-Driven Strategy',
     description: 'We leverage analytics and insights to create marketing strategies that deliver measurable results and ROI.',
   },
   {
-    icon: FiTarget,
+    icon: FiUsers,
     title: 'Precise Targeting',
     description: 'Reach the right audience at the right time with our advanced targeting and segmentation techniques.',
   },
   {
-    icon: FiZap,
+    icon: FiLayers,
     title: 'Innovative Solutions',
     description: 'Stay ahead of the competition with cutting-edge marketing technologies and creative approaches.',
   },

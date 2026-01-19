@@ -135,9 +135,12 @@ export default function Footer() {
                     <li key={i}>
                       <a
                         href={linkHref}
-                        className={`${isHighlight ? "text-primary font-semibold" : "text-gray-400 hover:text-primary"} transition-colors text-sm`}
+                        className={`${isHighlight ? "text-primary font-semibold inline-flex items-center space-x-1 group" : "text-gray-400 hover:text-primary"} transition-colors text-sm`}
                       >
-                        {linkLabel}
+                        <span>{linkLabel}</span>
+                        {isHighlight && (
+                          <FiArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        )}
                       </a>
                     </li>
                   );
