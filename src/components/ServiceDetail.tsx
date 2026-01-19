@@ -28,7 +28,7 @@ const serviceImages: { [key: string]: string[] } = {
   ],
   'distribution': [
     'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
     'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=400&fit=crop',
   ],
   'brand-activation': [
@@ -62,7 +62,7 @@ const serviceImages: { [key: string]: string[] } = {
     'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop',
   ],
   'digital-marketing': [
-    'https://images.unsplash.com/photo-1432888622747-4eb9a8f5a07d?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop',
     'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
     'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&h=400&fit=crop',
   ],

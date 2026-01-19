@@ -84,7 +84,8 @@ function MarketingWordDisplay() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-extrabold tracking-[0.08em] text-zinc-200/95 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[64px] leading-none drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+          className="font-extrabold tracking-[0.08em] text-zinc-200/95 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[64px] leading-none drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)] text-center w-full"
+          style={{ textAlign: 'center' }}
         >
           MARKETING
         </motion.h2>
@@ -212,7 +213,7 @@ export default function Hero() {
               variants={itemVariants}
               className="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed"
             >
-              Transform your brand with innovative marketing strategies, impactful events, and professional event management solutions that drive real results in the Middle East and beyond.
+              Transform your brand with innovative marketing strategies and impactful events that drive real results in the Middle East and beyond.
             </motion.p>
 
             {/* CTA Buttons */}

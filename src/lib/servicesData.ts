@@ -9,8 +9,8 @@ export const servicesData = [
   },
   {
     id: "field-promotion",
-    title: "Field Promotion",
-    titleEn: "Field Promotion",
+    title: "Promoters",
+    titleEn: "Promoters",
     shortDescription: "Direct brand representation and customer engagement",
     description: "Field promoters serve as direct representatives of the brand, employed to create interest in a product or service. They interact directly with customers, often in-store at events or in public places. Unlike traditional sales staff, promoters are often employed by the product manufacturer. Key tasks include conducting demonstrations, increasing brand awareness, direct interaction, event presence, and collecting customer feedback.",
     features: ["Product Demonstrations", "Brand Awareness", "Direct Interaction", "Feedback Collection"],

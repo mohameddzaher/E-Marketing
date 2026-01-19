@@ -13,7 +13,7 @@ const services = [
   },
   {
     icon: FiUsers,
-    title: 'Field Promotion',
+    title: 'Promoters',
     description: 'Direct brand representation and customer engagement through trained field promoters at events and locations.',
   },
   {

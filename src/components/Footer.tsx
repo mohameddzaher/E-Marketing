@@ -69,10 +69,11 @@ export default function Footer() {
     {
       title: "Services",
       links: [
-        "Merchandising",
-        "Brand Activation",
-        "Event Management",
-        "Digital Marketing",
+        { label: "Merchandising", href: "/services#merchandising" },
+        { label: "Brand Activation", href: "/services#brand-activation" },
+        { label: "Event Management", href: "/services#event-management" },
+        { label: "Digital Marketing", href: "/services#digital-marketing" },
+        { label: "for more", href: "/services", isHighlight: true },
       ],
     },
     {
@@ -126,14 +127,15 @@ export default function Footer() {
               <h3 className="font-bold text-white mb-4">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link, i) => {
-                  const linkHref = typeof link === "string" ? "#" : link.href;
+                  const linkHref = typeof link === "string" ? "#" : (typeof link === "object" ? link.href : "#");
                   const linkLabel =
-                    typeof link === "string" ? link : link.label;
+                    typeof link === "string" ? link : (typeof link === "object" ? link.label : "");
+                  const isHighlight = typeof link === "object" && link.isHighlight;
                   return (
                     <li key={i}>
                       <a
                         href={linkHref}
-                        className="text-gray-400 hover:text-primary transition-colors text-sm"
+                        className={`${isHighlight ? "text-primary font-semibold" : "text-gray-400 hover:text-primary"} transition-colors text-sm`}
                       >
                         {linkLabel}
                       </a>

@@ -7,7 +7,6 @@ import { FiCheck } from 'react-icons/fi';
 
 const highlights = [
   'Innovative Marketing Strategies',
-  'Professional Event Management',
   'Data-Driven Results',
   'Expert Team of Professionals',
   'Regional Market Expertise',

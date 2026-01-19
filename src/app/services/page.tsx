@@ -16,7 +16,7 @@ export default function ServicesPage() {
         {/* Image Background */}
         <div className="absolute inset-0">
           <img
-            src="https://i.pinimg.com/1200x/82/c6/54/82c6546f920209c80e89182a6e1350e9.jpg"
+            src="https://images.unsplash.com/photo-1629757509637-7c99379d6d26?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Services background"
             className="w-full h-full object-cover"
           />
@@ -76,7 +76,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <ServiceShowcase />
 
       {/* Process Section */}
       <section className="py-10 sm:py-12 bg-white">

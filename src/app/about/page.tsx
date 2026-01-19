@@ -17,7 +17,7 @@ export default function AboutPage() {
         {/* Image Background */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1551787280-baec7cd7be22?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://images.unsplash.com/photo-1629757509637-7c99379d6d26?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="About background"
             className="w-full h-full object-cover"
           />

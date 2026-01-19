@@ -3,32 +3,24 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FiStar } from 'react-icons/fi';
+import { FiArrowRight, FiTrendingUp, FiTarget, FiZap } from 'react-icons/fi';
+import Link from 'next/link';
 
-const testimonials = [
+const marketingHighlights = [
   {
-    name: 'Ahmed Hassan',
-    company: 'Tech Innovations',
-    text: 'Energize transformed our brand presence. Incredible results!',
-    rating: 5,
+    icon: FiTrendingUp,
+    title: 'Data-Driven Strategy',
+    description: 'We leverage analytics and insights to create marketing strategies that deliver measurable results and ROI.',
   },
   {
-    name: 'Sara Al-Rashid',
-    company: 'Retail Plus',
-    text: 'Professional team, amazing execution. Highly recommended!',
-    rating: 5,
+    icon: FiTarget,
+    title: 'Precise Targeting',
+    description: 'Reach the right audience at the right time with our advanced targeting and segmentation techniques.',
   },
   {
-    name: 'Mohammad Ibrahim',
-    company: 'Finance Solutions',
-    text: 'Best marketing agency we have worked with in the region.',
-    rating: 5,
-  },
-  {
-    name: 'Fatima Al-Kaabi',
-    company: 'Luxury Brands',
-    text: 'Exceeded our expectations in every way. Thank you!',
-    rating: 5,
+    icon: FiZap,
+    title: 'Innovative Solutions',
+    description: 'Stay ahead of the competition with cutting-edge marketing technologies and creative approaches.',
   },
 ];
 
@@ -37,7 +29,7 @@ export default function Testimonials() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="relative py-12 sm:py-16 bg-white overflow-hidden">
+    <section className="relative py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -46,36 +38,66 @@ export default function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 sm:mb-12"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold font-display text-gray-900">
-            What Our
-            <span className="text-gradient"> Clients Say</span>
+          <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-4">
+            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+            <span className="text-primary font-semibold text-xs">
+              WHY CHOOSE US
+            </span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold font-display text-gray-900 mb-2">
+            Marketing Excellence
+            <span className="text-gradient"> That Works</span>
           </h2>
+          <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
+            We combine creativity, strategy, and technology to deliver marketing solutions that drive real business growth.
+          </p>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              whileHover={{ y: -3 }}
-              className="p-4 sm:p-6 bg-white rounded-xl border border-gray-200 hover:shadow-lg transition-all"
-            >
-              <div className="flex items-center space-x-1 mb-3">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <FiStar key={i} className="w-4 h-4 fill-primary text-primary" />
-                ))}
-              </div>
-              <p className="text-gray-600 text-sm sm:text-base mb-4">&quot;{testimonial.text}&quot;</p>
-              <div>
-                <p className="font-bold text-gray-900 text-sm">{testimonial.name}</p>
-                <p className="text-primary text-xs sm:text-sm">{testimonial.company}</p>
-              </div>
-            </motion.div>
-          ))}
+        {/* Marketing Highlights Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
+          {marketingHighlights.map((highlight, index) => {
+            const Icon = highlight.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                whileHover={{ y: -5 }}
+                className="p-4 sm:p-6 bg-white rounded-xl border border-gray-200 hover:border-primary/50 hover:shadow-lg transition-all"
+              >
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-4">
+                  <Icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">
+                  {highlight.title}
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {highlight.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="text-center"
+        >
+          <Link href="/services">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-all shadow-lg hover:shadow-xl"
+            >
+              <span>Explore Our Services</span>
+              <FiArrowRight className="w-4 h-4" />
+            </motion.button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
