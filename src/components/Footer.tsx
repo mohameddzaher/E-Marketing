@@ -8,6 +8,7 @@ import {
   FiMail,
   FiPhone,
   FiMapPin,
+  FiArrowRight,
 } from "react-icons/fi";
 import { FaYoutube, FaSnapchat, FaWhatsapp, FaTiktok } from "react-icons/fa";
 import { useState } from "react";
