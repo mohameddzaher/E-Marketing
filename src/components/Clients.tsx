@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 
@@ -47,16 +47,45 @@ export default function Clients() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [isPaused, setIsPaused] = useState(false);
-  const controls = useAnimation();
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isPaused) {
-      controls.start({
-        x: ['0%', '-100%'],
-        transition: { repeat: Infinity, duration: 60, ease: 'linear' }
-      });
+    if (!isPaused && sliderRef.current) {
+      let animationId: number;
+      let startTime: number | null = null;
+      const duration = 60000; // 60 seconds in milliseconds
+      const distance = -50; // Move -50% (half of the duplicated content)
+
+      const animate = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        if (sliderRef.current) {
+          const currentX = progress * distance;
+          sliderRef.current.style.transform = `translateX(${currentX}%)`;
+          
+          if (progress >= 1) {
+            // Reset to 0% instantly and restart
+            if (sliderRef.current) {
+              sliderRef.current.style.transform = 'translateX(0%)';
+            }
+            startTime = null;
+          }
+        }
+        
+        if (!isPaused) {
+          animationId = requestAnimationFrame(animate);
+        }
+      };
+
+      animationId = requestAnimationFrame(animate);
+      
+      return () => {
+        cancelAnimationFrame(animationId);
+      };
     }
-  }, [isPaused, controls]);
+  }, [isPaused]);
 
   return (
     <section className="relative py-12 sm:py-16 overflow-hidden">
@@ -91,8 +120,8 @@ export default function Clients() {
         >
           <div className="flex space-x-6 sm:space-x-8 overflow-hidden w-full">
             {/* Animated infinite scroll */}
-            <motion.div
-              animate={controls}
+            <div
+              ref={sliderRef}
               className="flex space-x-6 sm:space-x-8 min-w-max"
             >
               {[...clients, ...clients].map((client, index) => (
@@ -108,7 +137,7 @@ export default function Clients() {
                   />
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
