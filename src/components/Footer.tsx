@@ -10,7 +10,7 @@ import {
   FiMapPin,
   FiArrowRight,
 } from "react-icons/fi";
-import { FaYoutube, FaSnapchat, FaWhatsapp, FaTiktok } from "react-icons/fa";
+import { FaYoutube, FaSnapchat, FaTiktok } from "react-icons/fa";
 import { useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
@@ -58,11 +58,6 @@ export default function Footer() {
       icon: FaYoutube,
       href: "https://www.youtube.com/@EnergizeBusKSA",
       label: "YouTube",
-    },
-    {
-      icon: FaWhatsapp,
-      href: "https://tr.ee/Z6xrJKnbrl",
-      label: "WhatsApp",
     },
   ];
 

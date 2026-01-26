@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 // Marketing Word Display Component with Pins
 type Pin = {
@@ -229,13 +230,15 @@ export default function Hero() {
                 <span>Explore Services</span>
                 <FiArrowRight className="w-3 h-3" />
               </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 text-white font-semibold transition-all text-xs sm:text-sm"
-              >
-                Watch Demo
-              </motion.button>
+              <Link href="/projects">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-4 py-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 text-white font-semibold transition-all text-xs sm:text-sm"
+                >
+                  View Our Projects
+                </motion.button>
+              </Link>
             </motion.div>
 
           </motion.div>

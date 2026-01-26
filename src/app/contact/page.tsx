@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import { motion } from "framer-motion";
 import { FiInstagram, FiFacebook, FiLinkedin } from "react-icons/fi";
-import { FaYoutube, FaSnapchat, FaWhatsapp, FaTiktok } from "react-icons/fa";
+import { FaYoutube, FaSnapchat, FaTiktok } from "react-icons/fa";
 
 const socialLinks = [
   {
@@ -37,11 +37,6 @@ const socialLinks = [
     icon: FaYoutube,
     href: "https://www.youtube.com/@EnergizeBusKSA",
     label: "YouTube",
-  },
-  {
-    icon: FaWhatsapp,
-    href: "https://tr.ee/Z6xrJKnbrl",
-    label: "WhatsApp",
   },
 ];
 

@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { FaLinkedinIn, FaTwitter, FaInstagram } from "react-icons/fa";
 import { FiUser, FiBriefcase, FiCode, FiPenTool } from "react-icons/fi";
 
 const team = [
@@ -71,17 +70,6 @@ export default function Team() {
                 {member.role}
               </p>
               <p className="text-gray-600 text-xs mb-3">{member.bio}</p>
-              <div className="flex justify-center gap-3">
-                <button className="p-2 rounded-full bg-white border border-gray-200 hover:border-primary hover:text-primary transition-colors">
-                  <FaLinkedinIn className="text-xs sm:text-sm" />
-                </button>
-                <button className="p-2 rounded-full bg-white border border-gray-200 hover:border-primary hover:text-primary transition-colors">
-                  <FaTwitter className="text-xs sm:text-sm" />
-                </button>
-                <button className="p-2 rounded-full bg-white border border-gray-200 hover:border-primary hover:text-primary transition-colors">
-                  <FaInstagram className="text-xs sm:text-sm" />
-                </button>
-              </div>
             </motion.div>
           ))}
         </div>
