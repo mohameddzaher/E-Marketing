@@ -3,9 +3,9 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
-import Team from "@/components/Team";
 import Values from "@/components/Values";
 import { motion } from "framer-motion";
+import { FiUsers, FiAward, FiTrendingUp, FiZap } from "react-icons/fi";
 
 export default function AboutPage() {
   return (
@@ -114,7 +114,51 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Team />
+      {/* Team Stats - Light & Simple */}
+      <section className="py-10 sm:py-12 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <h2 className="text-xl sm:text-2xl font-bold font-display text-gray-900 mb-2">
+              Our <span className="text-gradient">Team</span>
+            </h2>
+            <p className="text-gray-600 text-sm max-w-xl mx-auto">
+              A dedicated team of experts working together to deliver exceptional results
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              { icon: FiUsers, label: "Expert Team", value: "50+" },
+              { icon: FiAward, label: "Years Experience", value: "10+" },
+              { icon: FiTrendingUp, label: "Projects Delivered", value: "500+" },
+              { icon: FiZap, label: "Client Satisfaction", value: "98%" },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="text-center p-4 sm:p-5 rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mx-auto mb-3">
+                  <stat.icon className="w-5 h-5 text-primary" />
+                </div>
+                <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
+                  {stat.value}
+                </div>
+                <p className="text-gray-600 text-xs">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Awards & Recognition */}
       <section className="py-10 sm:py-12 bg-white">
