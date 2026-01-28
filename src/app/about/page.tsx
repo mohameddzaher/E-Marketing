@@ -128,7 +128,8 @@ export default function AboutPage() {
               Our <span className="text-gradient">Team</span>
             </h2>
             <p className="text-gray-600 text-sm max-w-xl mx-auto">
-              A dedicated team of experts working together to deliver exceptional results
+              A dedicated team of experts working together to deliver
+              exceptional results
             </p>
           </motion.div>
 
@@ -136,7 +137,11 @@ export default function AboutPage() {
             {[
               { icon: FiUsers, label: "Expert Team", value: "50+" },
               { icon: FiAward, label: "Years Experience", value: "10+" },
-              { icon: FiTrendingUp, label: "Projects Delivered", value: "500+" },
+              {
+                icon: FiTrendingUp,
+                label: "Projects Delivered",
+                value: "500+",
+              },
               { icon: FiZap, label: "Client Satisfaction", value: "98%" },
             ].map((stat, index) => (
               <motion.div
